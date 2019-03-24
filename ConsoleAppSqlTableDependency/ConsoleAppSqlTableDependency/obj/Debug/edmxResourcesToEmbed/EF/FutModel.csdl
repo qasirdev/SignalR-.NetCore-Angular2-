@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FUTAlertModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FutAlertNotification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="PlayerId" Type="Int32" Nullable="false" />
+    <Property Name="PlatformId" Type="Int16" Nullable="false" />
+    <Property Name="GreaterThan" Type="Int32" />
+    <Property Name="SmallerThan" Type="Int32" />
+    <Property Name="NotificationTypeMask" Type="Int16" Nullable="false" />
+    <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="CurrentPrice" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PlayerDetail" Relationship="Self.FK_FutAlertNotification_PlayerDetail" FromRole="FutAlertNotification" ToRole="PlayerDetail" />
+  </EntityType>
+  <EntityType Name="JournalItem">
+    <Key>
+      <PropertyRef Name="JournalItemId" />
+    </Key>
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="JournalItemId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerId" Type="Int32" Nullable="false" />
+    <Property Name="BoughtPrice" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="SoldPrice" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SoldDate" Type="DateTime" Precision="3" />
+    <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PlayerDetail" Relationship="Self.FK_JournalItem_PlayerDetail" FromRole="JournalItem" ToRole="PlayerDetail" />
+  </EntityType>
+  <EntityType Name="PlayerDetail">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerExternalId" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PlayerFutwizId" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PlayerFutbinId" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PlayerFutheadId" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PlayerCardTypeId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerShortName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Pace" Type="Int32" />
+    <Property Name="Shooting" Type="Int32" />
+    <Property Name="Passing" Type="Int32" />
+    <Property Name="Dribbling" Type="Int32" />
+    <Property Name="Defending" Type="Int32" />
+    <Property Name="Physical" Type="Int32" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="FacePhotoUrl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="BadgePhotoUrl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="NationPhotoUrl" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Overall" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlayerDBURL" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="PlayerFullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentPricePS4" Type="Int32" />
+    <Property Name="CurrentPriceXBox" Type="Int32" />
+    <Property Name="CurrentPricePC" Type="Int32" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsTradable" Type="Boolean" />
+    <NavigationProperty Name="FutAlertNotifications" Relationship="Self.FK_FutAlertNotification_PlayerDetail" FromRole="PlayerDetail" ToRole="FutAlertNotification" />
+    <NavigationProperty Name="JournalItems" Relationship="Self.FK_JournalItem_PlayerDetail" FromRole="PlayerDetail" ToRole="JournalItem" />
+    <Property Name="PlayerNationId" Type="Int32" />
+    <Property Name="PlayerClubId" Type="Int64" />
+  </EntityType>
+  <Association Name="FK_FutAlertNotification_PlayerDetail">
+    <End Role="PlayerDetail" Type="Self.PlayerDetail" Multiplicity="1" />
+    <End Role="FutAlertNotification" Type="Self.FutAlertNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerDetail">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="FutAlertNotification">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalItem_PlayerDetail">
+    <End Role="PlayerDetail" Type="Self.PlayerDetail" Multiplicity="1" />
+    <End Role="JournalItem" Type="Self.JournalItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerDetail">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="JournalItem">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FUTAlertEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FutAlertNotifications" EntityType="Self.FutAlertNotification" />
+    <EntitySet Name="JournalItems" EntityType="Self.JournalItem" />
+    <EntitySet Name="PlayerDetails" EntityType="Self.PlayerDetail" />
+    <AssociationSet Name="FK_FutAlertNotification_PlayerDetail" Association="Self.FK_FutAlertNotification_PlayerDetail">
+      <End Role="PlayerDetail" EntitySet="PlayerDetails" />
+      <End Role="FutAlertNotification" EntitySet="FutAlertNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalItem_PlayerDetail" Association="Self.FK_JournalItem_PlayerDetail">
+      <End Role="PlayerDetail" EntitySet="PlayerDetails" />
+      <End Role="JournalItem" EntitySet="JournalItems" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

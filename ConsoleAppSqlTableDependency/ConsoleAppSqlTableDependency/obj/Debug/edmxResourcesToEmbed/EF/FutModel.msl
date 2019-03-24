@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FUTAlertModelStoreContainer" CdmEntityContainer="FUTAlertEntities">
+    <EntitySetMapping Name="FutAlertNotifications">
+      <EntityTypeMapping TypeName="FUTAlertModel.FutAlertNotification">
+        <MappingFragment StoreEntitySet="FutAlertNotification">
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+          <ScalarProperty Name="GreaterThan" ColumnName="GreaterThan" />
+          <ScalarProperty Name="SmallerThan" ColumnName="SmallerThan" />
+          <ScalarProperty Name="NotificationTypeMask" ColumnName="NotificationTypeMask" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="CurrentPrice" ColumnName="CurrentPrice" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JournalItems">
+      <EntityTypeMapping TypeName="FUTAlertModel.JournalItem">
+        <MappingFragment StoreEntitySet="JournalItem">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="JournalItemId" ColumnName="JournalItemId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="BoughtPrice" ColumnName="BoughtPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SoldDate" ColumnName="SoldDate" />
+          <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerDetails">
+      <EntityTypeMapping TypeName="FUTAlertModel.PlayerDetail">
+        <MappingFragment StoreEntitySet="PlayerDetail">
+          <ScalarProperty Name="PlayerClubId" ColumnName="PlayerClubId" />
+          <ScalarProperty Name="PlayerNationId" ColumnName="PlayerNationId" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="PlayerExternalId" ColumnName="PlayerExternalId" />
+          <ScalarProperty Name="PlayerFutwizId" ColumnName="PlayerFutwizId" />
+          <ScalarProperty Name="PlayerFutbinId" ColumnName="PlayerFutbinId" />
+          <ScalarProperty Name="PlayerFutheadId" ColumnName="PlayerFutheadId" />
+          <ScalarProperty Name="PlayerCardTypeId" ColumnName="PlayerCardTypeId" />
+          <ScalarProperty Name="PlayerShortName" ColumnName="PlayerShortName" />
+          <ScalarProperty Name="Pace" ColumnName="Pace" />
+          <ScalarProperty Name="Shooting" ColumnName="Shooting" />
+          <ScalarProperty Name="Passing" ColumnName="Passing" />
+          <ScalarProperty Name="Dribbling" ColumnName="Dribbling" />
+          <ScalarProperty Name="Defending" ColumnName="Defending" />
+          <ScalarProperty Name="Physical" ColumnName="Physical" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="FacePhotoUrl" ColumnName="FacePhotoUrl" />
+          <ScalarProperty Name="BadgePhotoUrl" ColumnName="BadgePhotoUrl" />
+          <ScalarProperty Name="NationPhotoUrl" ColumnName="NationPhotoUrl" />
+          <ScalarProperty Name="Overall" ColumnName="Overall" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="PlayerDBURL" ColumnName="PlayerDBURL" />
+          <ScalarProperty Name="PlayerFullName" ColumnName="PlayerFullName" />
+          <ScalarProperty Name="CurrentPricePS4" ColumnName="CurrentPricePS4" />
+          <ScalarProperty Name="CurrentPriceXBox" ColumnName="CurrentPriceXBox" />
+          <ScalarProperty Name="CurrentPricePC" ColumnName="CurrentPricePC" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+          <ScalarProperty Name="IsTradable" ColumnName="IsTradable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

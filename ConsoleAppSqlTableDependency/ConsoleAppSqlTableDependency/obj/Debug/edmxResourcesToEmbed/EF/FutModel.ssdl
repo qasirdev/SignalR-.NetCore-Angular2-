@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FUTAlertModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FutAlertNotification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="PlatformId" Type="smallint" Nullable="false" />
+    <Property Name="GreaterThan" Type="int" />
+    <Property Name="SmallerThan" Type="int" />
+    <Property Name="NotificationTypeMask" Type="smallint" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="CurrentPrice" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JournalItem">
+    <Key>
+      <PropertyRef Name="JournalItemId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="JournalItemId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerId" Type="int" Nullable="false" />
+    <Property Name="BoughtPrice" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="SoldPrice" Type="int" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="SoldDate" Type="datetime" />
+    <Property Name="DeletedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PlayerDetail">
+    <Key>
+      <PropertyRef Name="PlayerId" />
+    </Key>
+    <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerExternalId" Type="varchar" MaxLength="80" />
+    <Property Name="PlayerFutwizId" Type="varchar" MaxLength="80" />
+    <Property Name="PlayerFutbinId" Type="varchar" MaxLength="80" />
+    <Property Name="PlayerFutheadId" Type="varchar" MaxLength="80" />
+    <Property Name="PlayerCardTypeId" Type="int" Nullable="false" />
+    <Property Name="PlayerShortName" Type="nvarchar" MaxLength="80" />
+    <Property Name="Pace" Type="int" />
+    <Property Name="Shooting" Type="int" />
+    <Property Name="Passing" Type="int" />
+    <Property Name="Dribbling" Type="int" />
+    <Property Name="Defending" Type="int" />
+    <Property Name="Physical" Type="int" />
+    <Property Name="Age" Type="int" />
+    <Property Name="FacePhotoUrl" Type="varchar" MaxLength="80" />
+    <Property Name="BadgePhotoUrl" Type="varchar" MaxLength="80" />
+    <Property Name="NationPhotoUrl" Type="varchar" MaxLength="80" />
+    <Property Name="PlayerNationId" Type="int" />
+    <Property Name="PlayerClubId" Type="bigint" />
+    <Property Name="Overall" Type="int" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="PlayerDBURL" Type="varchar" MaxLength="80" />
+    <Property Name="PlayerFullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="CurrentPricePS4" Type="int" />
+    <Property Name="CurrentPriceXBox" Type="int" />
+    <Property Name="CurrentPricePC" Type="int" />
+    <Property Name="LastUpdatedDate" Type="datetime" />
+    <Property Name="IsTradable" Type="bit" />
+  </EntityType>
+  <Association Name="FK_FutAlertNotification_PlayerDetail">
+    <End Role="PlayerDetail" Type="Self.PlayerDetail" Multiplicity="1" />
+    <End Role="FutAlertNotification" Type="Self.FutAlertNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerDetail">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="FutAlertNotification">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JournalItem_PlayerDetail">
+    <End Role="PlayerDetail" Type="Self.PlayerDetail" Multiplicity="1" />
+    <End Role="JournalItem" Type="Self.JournalItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PlayerDetail">
+        <PropertyRef Name="PlayerId" />
+      </Principal>
+      <Dependent Role="JournalItem">
+        <PropertyRef Name="PlayerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FUTAlertModelStoreContainer">
+    <EntitySet Name="FutAlertNotification" EntityType="Self.FutAlertNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JournalItem" EntityType="Self.JournalItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlayerDetail" EntityType="Self.PlayerDetail" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FutAlertNotification_PlayerDetail" Association="Self.FK_FutAlertNotification_PlayerDetail">
+      <End Role="PlayerDetail" EntitySet="PlayerDetail" />
+      <End Role="FutAlertNotification" EntitySet="FutAlertNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JournalItem_PlayerDetail" Association="Self.FK_JournalItem_PlayerDetail">
+      <End Role="PlayerDetail" EntitySet="PlayerDetail" />
+      <End Role="JournalItem" EntitySet="JournalItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
