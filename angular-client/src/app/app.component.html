@@ -1,0 +1,133 @@
+<div class="layout-topbar">
+    <div class="row">        
+        <div class="col-md-2">
+        <img src= "/assets/icons/Dummy_logo.png"  style="height: 120px;"/> 
+        </div>
+        <div class="col-md-10" style="margin-top: 1.5em; text-align: right" ><h1 style="color: #ba9c46; text-transform: uppercase; font-weight: bold; font-family: DIN Pro Condensed Bold; font-size: 2.5em">Journals</h1></div>
+    </div>
+</div>
+
+<!-- <p-growl [(value)]="msgs"></p-growl> -->
+
+<style>
+    .p-table tr{color: #969696; }
+    .p-table tr th{text-align: center;background-color: #fff; color: #969696; }
+</style>
+
+<p-table [value]="playerJournalModels" class="p-table">
+    <ng-template pTemplate="header">
+        <tr style="word-wrap: break-word;">
+            <th style="text-align: center; width: 5%;">
+                <p class="glyphicon glyphicon-time"></p>
+                <p>Date Added</p> 
+            </th>
+            <th style=" width: 10%;">
+                <img src= "/assets/icons/player.png"  style="width: 30px;height: 30px;"/> 
+                <p>Player Information</p> 
+            </th>
+            <th style=" width: 10%;">
+                <img src= "/assets/icons/bought.png"  style="width: 30px;height: 30px;"/> 
+                <p>Bought</p> 
+            </th>
+            <th style=" width: 8%;">
+                <img src= "/assets/icons/currentprice.png"  style="width: 30px;height: 30px;"/> 
+                <p>Current Price</p> 
+            </th>
+            <th style=" width: 10%;">
+                <img src= "/assets/icons/currentprogress.png"  style="width: 30px;height: 30px;"/> 
+                <p>Current Profit/Loss</p> 
+            </th>
+            <th style=" width: 10%;">
+                <p class="glyphicon glyphicon-list-alt"></p>
+                <p>Description</p> 
+            </th>
+            <th style=" width: 7%;">
+                    <img src= "/assets/icons/alert.png"  style="width: 30px;height: 30px;"/> 
+                    <p>Alert</p> 
+                </th>
+            <th style=" width: 7%;">
+                <img src= "/assets/icons/editdelete.png"  style="width: 30px;height: 30px;"/> 
+                <p>Edit/Delete</p> 
+            </th>
+            <th style=" width: 7%;">
+                <p class="glyphicon glyphicon-ok"></p>
+                <p>Sold</p>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-playerJournalModel>
+        <tr style="word-wrap: break-word;">
+            <td style="text-align: center; width: 5%;">
+                <p style="font-weight: bold; margin: 0px;">{{playerJournalModel.createdDate | date:"MMMM"}}</p>
+                <p style="font-weight: bold; margin: 0px;">{{playerJournalModel.createdDate | date:"d"}}</p>
+                <p style="font-size: large; margin: 0px;">{{playerJournalModel.createdDate | date:"HH:mm" }}</p>
+            </td>
+            <td style=" width: 10%;">
+                <tr class="row">
+                    <td class="col-lg-4" style="padding: 0px;"><img [src]= "playerJournalModel.facePhotoUrl"  style="width: 100%"/></td>
+                    <td class="col-lg-8" >
+                        <p style="text-transform: uppercase; font-weight: bold; font-family: DIN Pro Condensed Bold;">{{playerJournalModel.playerFullName}}</p>
+                        <img [src]= "playerJournalModel.badgePhotoUrl"  style="width: 30px;height: 30px;"/> 
+                        <img [src]= "playerJournalModel.nationPhotoUrl"  style="width: 30px;height: 30px;"/> 
+                        <div class="container1" style="position: relative; text-align: center; display: inline-block; width: 40px;height: 40px;">
+                                <img [src]= "playerJournalModel.playerCardTypeId"  style="width:100%;padding-bottom: 0.5em;"/> 
+                                <div class="centered1" [style.color]="playerJournalModel.overallColor" style="font-family: DIN Pro Medium; font-size: large; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">{{playerJournalModel.overall}}  </div>
+                        </div>                                         
+                    </td>
+                </tr>
+                
+            </td>
+            <td style=" width: 10%;">
+                <span style="font-family: DIN Pro; display: block">{{playerJournalModel.quantity}} Cards at</span>                
+                <span style="text-transform: uppercase; font-weight: bold; font-family: DIN Pro Condensed Bold">{{playerJournalModel.boughtPrice}}</span>
+                <img src= "/assets/icons/Dummy.png"  style="width: 30px;height: 30px;"/> 
+                <span style="font-family: DIN Pro; display: block;">Total Investment:</span>
+                <span style="font-weight: bold; font-family: DIN Pro Condensed Bold; display: block;">{{playerJournalModel.totalInvestment}}</span>
+                
+            </td>
+            <td style="text-align: center;width: 8%;">
+                <p style="font-weight: bold; font-family: DIN Pro Condensed Bold">{{playerJournalModel.currentPricePS4}}</p>
+                <p style="font-weight: bold; font-family: DIN Pro Medium; font-size: small;">Updated: {{playerJournalModel.lastUpdatedDate}}</p>
+            </td>
+            <td style=" width: 10%;">
+                <span style="font-family: DIN Pro; display: block;">P/L per Card:</span> 
+                <span style="text-transform: uppercase; font-weight: bold; font-family: DIN Pro Condensed Bold;" 
+                    [style.color]="ConvertString(playerJournalModel.profitLossPerCard) > 0 ? 'green' : 'red'">
+                    {{playerJournalModel.profitLossPerCard}}
+                </span>
+                <img src= "/assets/icons/Dummy.png"  style="width: 30px;height: 30px;"/> 
+                <span style="font-family: DIN Pro; display: block;">Total Investment P/L:</span>
+                <span style="font-weight: bold; font-family: DIN Pro Condensed Bold;display: block;"
+                [style.color]="ConvertString(playerJournalModel.totalInvestmentPL) > 0 ? 'green' : 'red'" >{{playerJournalModel.totalInvestmentPL}}</span>
+            </td>
+            <td style=" width: 10%;">
+                <span style="font-family: DIN Pro; display: block;">Target Sell Price:</span> 
+                <span style="text-transform: uppercase; font-weight: bold; font-family: DIN Pro Condensed Bold;">{{playerJournalModel.soldPrice}}</span>
+                <img src= "/assets/icons/Dummy.png"  style="width: 30px;height: 30px;"/> 
+                <span style="font-family: DIN Pro; display: block;">{{playerJournalModel.description}}</span>
+            </td>
+            <td style="text-align: center;width: 7%;">
+                <div *ngIf="playerJournalModel.alertPrice" style="padding-bottom: 30px;">
+                        <span>{{playerJournalModel.alertPrice}}</span><img *ngIf='playerJournalModel.isExpired == "True"' src= "/assets/icons/alertok.png"  style="width: 30px;height: 30px;"/><br>
+                        <a href="#" style="padding:.3em;"> <img src= "/assets/icons/edit.png"  style="width: 30px;height: 30px;"/> </a>
+                        <a href="#" style="padding:.3em;"> <img src= "/assets/icons/delete.png"  style="width: 30px;height: 30px;"/> </a>    
+                </div>
+                <div *ngIf='playerJournalModel.alertPrice == ""'>
+                        <a href="#" style="padding:.3em;"> <img src= "/assets/icons/alertadd.png"  style="width: 50px;height: 50px;"/> </a>
+                </div>
+            </td>
+            <td style="text-align: center;width: 7%;">
+                <a href="#" style="padding:.3em;"> <img src= "/assets/icons/edit.png"  style="width: 30px;height: 30px;"/> </a>
+                <a href="#" style="padding:.3em;"> <img src= "/assets/icons/delete.png"  style="width: 30px;height: 30px;"/> </a>
+            </td>
+            <td style="text-align: center;width: 7%;">
+                <a style="padding:.3em;">
+                    <img *ngIf="playerJournalModel.soldDate != '' " src= "/assets/icons/ok.png"  style="width: 50px;height: 50px;"/> 
+                    <img *ngIf="playerJournalModel.soldDate == '' " src= "/assets/icons/cross.png"  style="width: 50px;height: 50px;"/> 
+                </a>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- {{playerJournalModels | json}} -->
