@@ -1,0 +1,9 @@
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\bin\Debug\netcoreapp2.0\Journal.DataLayer.deps.json
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\bin\Debug\netcoreapp2.0\Journal.DataLayer.dll
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\obj\Debug\netcoreapp2.0\Journal.DataLayer.csprojAssemblyReference.cache
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\obj\Debug\netcoreapp2.0\Journal.DataLayer.csproj.CoreCompileInputs.cache
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\obj\Debug\netcoreapp2.0\Journal.DataLayer.AssemblyInfoInputs.cache
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\obj\Debug\netcoreapp2.0\Journal.DataLayer.AssemblyInfo.cs
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\bin\Debug\netcoreapp2.0\Journal.DataLayer.pdb
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\obj\Debug\netcoreapp2.0\Journal.DataLayer.dll
+D:\Qasir Data\Tutorials\Angular\SignalR\Training\SignalR\SignalR-Hub\Journal.DataLayer\obj\Debug\netcoreapp2.0\Journal.DataLayer.pdb
